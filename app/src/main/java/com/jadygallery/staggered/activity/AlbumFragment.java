@@ -13,10 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jadygallery.staggered.component.PhoneMediaControl;
-
 import com.jadygallery.staggered.R;
 import com.jadygallery.staggered.adapter.AlbumAdapter;
+import com.jadygallery.staggered.component.PhoneMediaControl;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class AlbumFragment extends Fragment {
     Unbinder unbinder;
     private Context mContext;
 
-    public static ArrayList<PhoneMediaControl.AlbumEntry> albumsSorted = null;
+    public ArrayList<PhoneMediaControl.AlbumEntry> albumsSorted = null;
     private AlbumAdapter listAdapter;
     PhoneMediaControl mediaControl;
 
@@ -97,7 +96,6 @@ public class AlbumFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        albumsSorted = null;
         unbinder.unbind();
     }
 

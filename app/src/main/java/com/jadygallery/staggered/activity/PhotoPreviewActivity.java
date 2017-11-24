@@ -10,10 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.jadygallery.staggered.fragment.FragPhotoPreview;
-
 import com.jadygallery.staggered.R;
 import com.jadygallery.staggered.component.PhoneMediaControl.PhotoEntry;
+import com.jadygallery.staggered.fragment.FragPhotoPreview;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class PhotoPreviewActivity extends AppCompatActivity implements OnPageCha
 
     private ViewPager mViewPager;
     protected List<PhotoEntry> photos;
-    protected int current, folderPosition;
+    protected int current;
 
     protected Context context;
     private Toolbar toolbar;
@@ -39,10 +38,8 @@ public class PhotoPreviewActivity extends AppCompatActivity implements OnPageCha
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle mBundle = getIntent().getExtras();
-        folderPosition = mBundle.getInt("Key_FolderID");
         current = mBundle.getInt("key_pos");
-
-        photos = AlbumFragment.albumsSorted.get(folderPosition).photos;
+        photos = mBundle.getParcelableArrayList("photos");
 
         mViewPager = (ViewPager) findViewById(R.id.vp_base_app);
         mViewPager.setOnPageChangeListener(this);

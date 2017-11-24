@@ -15,9 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
-import com.jadygallery.staggered.fragment.FragPermission;
-
 import com.jadygallery.staggered.R;
+import com.jadygallery.staggered.fragment.FragPermission;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,6 @@ public class ActivityHome extends AppCompatActivity {
     private FragmentManager fragmentManager = null;
     private FragmentTransaction fragmentTransaction = null;
     private Fragment currentFragment = null;
-
     Handler handler =new Handler();
 
     @Override
@@ -61,7 +59,6 @@ public class ActivityHome extends AppCompatActivity {
     private void attachedFragment() {
         try {
             if (currentFragment != null) {
-
                 if (fragmentTransaction.isEmpty()) {
                     fragmentTransaction.add(R.id.fragment_container,
                             currentFragment, "" + currentFragment.toString());
@@ -127,7 +124,7 @@ public class ActivityHome extends AppCompatActivity {
                 if (!isGrandAll) {
                     Toast.makeText(this, "You must access file permission to write signature", Toast.LENGTH_LONG).show();
                     //Toast.makeText(this, "you need to grant all permission", Toast.LENGTH_LONG).show();
-                } else {
+                }else{
 
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -140,9 +137,6 @@ public class ActivityHome extends AppCompatActivity {
                             fragmentTransaction.commit();
                         }
                     },500);
-
-
-
                 }
                 break;
         }

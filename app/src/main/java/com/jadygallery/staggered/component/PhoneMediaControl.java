@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -152,7 +154,8 @@ public class PhoneMediaControl {
         }
     }
 
-    public static class PhotoEntry {
+    public static class PhotoEntry implements Parcelable {
+
         public int bucketId;
         public int imageId;
         public long dateTaken;
@@ -165,6 +168,42 @@ public class PhoneMediaControl {
             this.dateTaken = dateTaken;
             this.path = path;
             this.orientation = orientation;
+        }
+
+        protected PhotoEntry(Parcel in) {
+            bucketId = in.readInt();
+            imageId = in.readInt();
+            dateTaken = in.readLong();
+            path = in.readString();
+            orientation = in.readInt();
+            height = in.readInt();
+        }
+
+        public static final Creator<PhotoEntry> CREATOR = new Creator<PhotoEntry>() {
+            @Override
+            public PhotoEntry createFromParcel(Parcel in) {
+                return new PhotoEntry(in);
+            }
+
+            @Override
+            public PhotoEntry[] newArray(int size) {
+                return new PhotoEntry[size];
+            }
+        };
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeInt(bucketId);
+            parcel.writeInt(imageId);
+            parcel.writeLong(dateTaken);
+            parcel.writeString(path);
+            parcel.writeInt(orientation);
+            parcel.writeInt(height);
         }
     }
 

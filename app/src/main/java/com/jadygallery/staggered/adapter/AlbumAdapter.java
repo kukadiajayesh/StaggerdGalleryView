@@ -14,10 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.jadygallery.staggered.R;
 import com.jadygallery.staggered.activity.GalleryActivity;
 import com.jadygallery.staggered.component.PhoneMediaControl;
-
-import com.jadygallery.staggered.R;
 
 import java.util.ArrayList;
 
@@ -94,7 +93,7 @@ public class AlbumAdapter extends RecyclerView.Adapter {
 
             Intent mIntent = new Intent(mContext, GalleryActivity.class);
             Bundle mBundle = new Bundle();
-            mBundle.putString("key_pos", pos + "");
+            mBundle.putParcelableArrayList("photos", albumsSorted.get(pos).photos);
             mBundle.putString("Key_Name", albumsSorted.get(pos).bucketName + "");
             mIntent.putExtras(mBundle);
             mContext.startActivity(mIntent);

@@ -14,10 +14,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.jadygallery.staggered.activity.PhotoPreviewActivity;
-
 import com.jadygallery.staggered.R;
-
+import com.jadygallery.staggered.activity.PhotoPreviewActivity;
 import com.jadygallery.staggered.component.PhoneMediaControl;
 
 import java.util.ArrayList;
@@ -102,12 +100,10 @@ public class GalleryAdapter extends RecyclerView.Adapter {
         @Override
         public void onClick(View view) {
 
-            PhoneMediaControl.PhotoEntry photoEntry = photos.get(pos);
-
             Intent mIntent = new Intent(mContext,
                     PhotoPreviewActivity.class);
             Bundle mBundle = new Bundle();
-            mBundle.putInt("Key_FolderID", mFolderPos);
+            mBundle.putParcelableArrayList("photos", photos);
             mBundle.putInt("key_pos", pos);
             mIntent.putExtras(mBundle);
             mContext.startActivity(mIntent);

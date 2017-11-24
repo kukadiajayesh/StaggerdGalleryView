@@ -7,10 +7,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.jadygallery.staggered.R;
 import com.jadygallery.staggered.adapter.GalleryAdapter;
 import com.jadygallery.staggered.component.PhoneMediaControl;
-
-import com.jadygallery.staggered.R;
 
 import java.util.ArrayList;
 
@@ -20,8 +19,7 @@ public class GalleryActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     int mFolderPos;
 
-    public static ArrayList<PhoneMediaControl.AlbumEntry> albumsSorted = null;
-    public static ArrayList<PhoneMediaControl.PhotoEntry> photos = new ArrayList<>();
+    public ArrayList<PhoneMediaControl.PhotoEntry> photos = new ArrayList<>();
 
     private GalleryAdapter galleryAdapter;
 
@@ -49,10 +47,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         Bundle mBundle = getIntent().getExtras();
         String nameAlbum = mBundle.getString("Key_Name");
-        mFolderPos = Integer.parseInt(mBundle.getString("key_pos"));
-        albumsSorted = AlbumFragment.albumsSorted;
-
-        photos = albumsSorted.get(mFolderPos).photos;
+        photos = mBundle.getParcelableArrayList("photos");
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setTitle(nameAlbum + " (" + photos.size() + ")");
@@ -102,7 +97,5 @@ public class GalleryActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        albumsSorted = null;
-        photos = null;
     }
 }
